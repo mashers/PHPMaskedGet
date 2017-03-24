@@ -34,6 +34,10 @@ PHPMaskedGet provides the following functions.
 ### Value getting functions
 - `maskedGETGetValue()`: returns the value associated with the provided key, or `false` if no value was found. The key argument should be set to the variable name in `$_GET[]` which contains the key. If no key is provided, the function assumes that the key is stored in `$_GET['k']`.
 - `maskedGETGetValueOrDie()`: attempts to retrieve the value associated with the provided key in the same way as `maskedGETGetValue()`, but causes the PHP script to die if no value is found. This is useful for scripts which run in the background (e.g. though AJAX or hidden iframes) so you can terminate execution if an incorrect key was provided. This should only happen if an error was made when adding the values to the masked array, or if an attacker is attempting random or old keys.
+- `maskedGETGetKey()`: returns the key associated with the provided value, or false if the value does not exist in the array of masked values. This is useful if you added an array of values and then want to know the key associated with one of the values.
+
+### Other functions
+- `maskedGetTrim()`: trims the array of masked values down to the specified size. The oldest values are discarded. This is useful for ensuring the session array does not become overly large, while allowing a cache of older values to remain. This will mean older keys will continue to work for a time should the user reload a page or use the browser history to go back to a previously loaded page.
 
 
 ## Examples
